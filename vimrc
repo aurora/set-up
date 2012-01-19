@@ -27,21 +27,22 @@ set expandtab
 set autoindent
 set smartindent
 
-" show line numbers
-set number
+" show line numbers relative to cursor position
+set relativenumber
 
 " keep cursor 8 lines from top/bottom when page starts to scroll
 set scrolloff=8
 
-" show invisible characters
-set listchars=tab:>-,trail:-
+" show invisible characters TextMate style
+set listchars=tab:▸\ ,eol:¬
 set list
 
-" set the search scan to wrap around the file
+" set the search scan to wrap arounc the file
 set wrapscan
 
-" case insensitive searches
+" case insensitive searches / intelligent case sensitive searches
 set ignorecase
+set smartcase
 
 " highlight all search matches
 set hlsearch
@@ -64,11 +65,30 @@ syntax on
 set background=light
 colorscheme solarized
 
-" set font and size
-set guifont=Bitstream\ Vera\ Sans\ Mono:h14
+" set colorscheme and gui font
+set guifont=Menlo:h14.00
 
 " enable filetype plugin, also required for snipmate plugin
 filetype plugin on
 
-" always show tabbar
-set showtabline=2
+" change leader key
+let mapleader = ","
+
+" fix vim regex handling
+nnoremap / /\v
+vnoremap / /\v
+
+" improve line wrapping behaviour
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+set colorcolumn=85
+
+" deactive help key
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+" autosave, when vim window is losing focus
+au FocusLost * :wa
+
