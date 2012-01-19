@@ -40,7 +40,7 @@ set scrolloff=8
 set listchars=tab:▸\ ,eol:¬
 set list
 
-" set the search scan to wrap arounc the file
+" set the search scan to wrap around the file
 set wrapscan
 
 " case insensitive searches / intelligent case sensitive searches
@@ -80,7 +80,6 @@ if &t_Co >= 256 || has("gui_running")
     silent! colorscheme solarized
 endif
 
-" set gui font
 set guifont=Menlo:h14.00
 
 " enable filetype plugin, also required for snipmate plugin
