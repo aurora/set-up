@@ -106,3 +106,7 @@ vnoremap <F1> <ESC>
 " autosave, when vim window is losing focus
 au FocusLost * :wa
 
+" apply 'sudo' trick, allow saving a file if you forgot 
+" sudo when editing a file you need higher privileges
+cmap w!! w !sudo tee % >/dev/null
+
