@@ -51,7 +51,7 @@ set smartcase
 set hlsearch
 
 " show line and column information
-set ruler
+"set ruler
 
 " show matching brackets
 set showmatch
@@ -114,4 +114,14 @@ cmap w!! w !sudo tee % >/dev/null
 if has("gui_running")
     set showtabline=2
 endif
+
+" custom status line
+set laststatus=2                                " make permanent
+set statusline=                                 " clear the statusline
+set statusline+=%f\                             " file name
+set statusline+=%h%m%r%w                        " flags
+set statusline+=[%{strlen(&ft)?&ft:'none'},     " filetype
+set statusline+=%{strlen(&fenc)?&fenc:&enc},    " encoding
+set statusline+=%{&fileformat}]                 " file format
+set statusline+=%-14.(%l,%c%V%)\ %<%P           " offset
 
