@@ -23,6 +23,9 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+" use multiple of shiftwidth when indenting with '<' and '>'
+set shiftround    
+
 " auto indent after {
 set autoindent
 set smartindent
@@ -61,11 +64,23 @@ set vb
 
 " set color scheme and enable syntax highlighting
 " get it from: https://github.com/altercation/vim-colors-solarized
-syntax on
-set background=light
-colorscheme solarized
+if &t_Co > 2 || has("gui_running")
+    syntax on
+endif
 
-" set colorscheme and gui font
+if &t_Co >= 256 || has("gui_running")
+    if has("gui_running")
+        set background=light
+    else
+        let g:solarized_termcolors=16
+        let g:solarized_termtrans=1
+        set background=dark
+    endif
+
+    silent! colorscheme solarized
+endif
+
+" set gui font
 set guifont=Menlo:h14.00
 
 " enable filetype plugin, also required for snipmate plugin
