@@ -50,9 +50,6 @@ set smartcase
 " highlight all search matches
 set hlsearch
 
-" show line and column information
-"set ruler
-
 " show matching brackets
 set showmatch
 
