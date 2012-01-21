@@ -110,9 +110,13 @@ au FocusLost * :wa
 " sudo when editing a file you need higher privileges
 cmap w!! w !sudo tee % >/dev/null
 
-" always show tab-bar in gui
+" set additional gui options
 if has("gui_running")
+    " always show tab-bar in gui
     set showtabline=2
+
+    " hide toolbar, i've no need of it
+    set guioptions-=T
 endif
 
 " custom status line
