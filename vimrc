@@ -114,6 +114,9 @@ if has("gui_running")
 
     " hide toolbar, i've no need of it
     set guioptions-=T
+
+    " hightlight row the cursor is in
+    set cursorline
 endif
 
 " custom status line
