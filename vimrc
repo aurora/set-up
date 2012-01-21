@@ -117,6 +117,9 @@ if has("gui_running")
 
     " hightlight row the cursor is in
     set cursorline
+
+    " change cursor color
+    highlight Cursor guibg=darkcyan
 endif
 
 " custom status line
