@@ -1,0 +1,19 @@
+/*
+ * installation (OSX): 
+ * 
+ * ln -snf ~/etc/sublime/Global.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Global.sublime-settings
+ */
+{
+    /* identations settings */
+    "tab_size":                 4,
+    "translate_tabs_to_space":  true,
+    "detect_indentation":       true,
+    "use_tab_stops":            true,
+
+    /* show whitespace characters and indent guides */
+    "draw_white_space":         "all",
+    "draw_indent_guides":       true,
+
+    /* show a ruler */
+    "rulers":                   120
+}
