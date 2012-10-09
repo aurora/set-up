@@ -1,0 +1,29 @@
+/*
+ * installation (OSX):
+ * 
+ * ln -snf ~/etc/sublime/Default\ \(OSX\).sublime-keymap ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Default\ \(OSX\).sublime-keymap
+ */
+[
+	/* improve docblock */
+	{"keys": ["enter"], "command": "insert", "args" : {"characters": "\n * "}, "context": [
+	    {
+		    "key": 			"selection_empty",
+		    "operator": 	"equal",
+		    "operand": 		true
+		},
+	    {
+		    "key": 			"preceding_text",
+		    "operator": 	"regex_contains",
+		    "operand": 	  	"\\/\\*\\*$",
+		    "match_all":	true
+		}
+	]},
+	{"keys": ["enter"], "command": "insert", "args" : {"characters": "\n* "}, "context": [
+	    {
+		    "key": 			"preceding_text",
+		    "operator": 	"regex_contains",
+		    "operand": 		"^[\t ]*\\*[^\\/]",
+		    "match_all": 	true
+		}
+	]}
+]
