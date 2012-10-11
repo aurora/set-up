@@ -37,8 +37,8 @@ set relativenumber
 set scrolloff=8
 
 " show invisible characters TextMate style
-set listchars=tab:▸\ ,eol:¬
-set list
+"set listchars=tab:▸\ ,eol:¬
+"set list
 
 " set the search scan to wrap around the file
 set wrapscan
