@@ -4,7 +4,7 @@ SRC=$HOME/dotfiles
 ERLC=$(which erlc)
 
 if [ "$ERLC" != "" ]; then
-    $ERLC -o $SRC/erl/ $SRC/erl/user_default.erl 
+    $ERLC -o $SRC/erl/ $SRC/erl/aur.erl 
 fi
 
 ln -snf $SRC/erlang $HOME/.erlang

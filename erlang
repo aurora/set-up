@@ -1,3 +1,3 @@
 {ok, [[Home]]} = init:get_argument(home),
 
-code:load_abs(Home ++ "/dotfiles/erl/user_default").
+code:load_abs(Home ++ "/dotfiles/erl/aur").
