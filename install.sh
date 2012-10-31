@@ -4,10 +4,9 @@ SRC=$HOME/dotfiles
 ERLC=$(which erlc)
 
 if [ "$ERLC" != "" ]; then
-    $ERLC -o $SRC/erl/ $SRC/erl/user_default.erl 
+    $ERLC -o $SRC/erl/ $SRC/erl/aur.erl 
+    ln -snf $SRC/erlang $HOME/.erlang
 fi
-
-ln -snf $SRC/erlang $HOME/.erlang
 
 # install stuff from etc folder
 ln -snf $SRC/etc/vimrc $HOME/.vimrc

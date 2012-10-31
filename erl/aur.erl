@@ -1,7 +1,7 @@
 %%
 %% This module provides some useful functions when developing erlang.
 %%
--module(user_default).
+-module(aur).
 -author("harald@octris.org").
 -export([reload/0]).
 
