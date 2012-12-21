@@ -11,3 +11,13 @@ fi
 # install stuff from etc folder
 ln -snf $SRC/etc/vimrc $HOME/.vimrc
 ln -snf $SRC/etc/vim $HOME/.vim
+
+# install binaries
+if [ ! -d $HOME/bin ]; then
+    mkdir $HOME/bin
+fi
+
+ls -1 $SRC/bin | while read cmd; do
+    ln -snf $SRC/bin/$cmd $HOME/bin/$cmd
+done
+
