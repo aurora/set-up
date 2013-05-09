@@ -9,8 +9,16 @@ if [ "$ERLC" != "" ]; then
 fi
 
 # install stuff from etc folder
+# -- vim releated stuff
 ln -snf $SRC/etc/vimrc $HOME/.vimrc
 ln -snf $SRC/etc/vim $HOME/.vim
+
+# -- sublime text related stuff only if sublime text is installed
+if [ -d $HOME/Library/Application\ Support/Sublime\ Text\ 2/Packages ]; then
+	[ -d $HOME/Library/Application\ Support/Sublime\ Text\ 2/Packages/User ] || mkdir $HOME/Library/Application\ Support/Sublime\ Text\ 2/Packages/User
+	
+	find $SRC/etc/sublime/* -type f -exec ln -snf "{}" $HOME/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/ \;
+fi
 
 # install binaries
 if [ ! -d $HOME/bin ]; then
