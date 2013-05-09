@@ -1,8 +1,2 @@
-/*
- * installation (OSX): 
- * 
- * ln -snf ~/etc/sublime/Global.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Global.sublime-settings
- */
-// 
 {
 }
