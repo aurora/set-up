@@ -25,7 +25,5 @@ if [ ! -d $HOME/bin ]; then
     mkdir $HOME/bin
 fi
 
-ls -1 $SRC/bin | while read cmd; do
-    ln -snf $SRC/bin/$cmd $HOME/bin/$cmd
-done
+find $SRC/bin/* -type f -exec ln -snf "{}" $HOME/bin/ \;
 
