@@ -1,3 +1,6 @@
 [submodule "iterm2-zmodem"]
 	path = iterm2-zmodem
 	url = git@github.com:aurora/iterm2-zmodem.git
+[submodule "rmate"]
+	path = rmate
+	url = git@github.com:aurora/rmate.git
