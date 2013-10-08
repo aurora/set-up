@@ -27,3 +27,10 @@ fi
 
 find $SRC/bin/* -type f -exec ln -snf "{}" $HOME/bin/ \;
 
+# OS specific stuff
+OS=$(uname)
+
+if [ "$OS" = "Darwin" ]; then
+    ln -snf $SRC/rmate/rmate $HOME/bin/
+    ln -snf $SRC/iterm2-zmodem $HOME/bin/
+fi
