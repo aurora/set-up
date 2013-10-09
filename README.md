@@ -17,3 +17,17 @@ Execute installer script:
 
     cd ~/dotfiles
     ./install.sh
+
+The following tools and packages will be installed, depending on the operating system used:
+    
+### Mac OS X
+
+* iterm2-zmodem
+* rmate
+* rudix
+* tmux
+
+### Linux (Ubuntu)
+
+* rmate
+* tmux
