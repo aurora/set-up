@@ -1,11 +1,9 @@
-# dotfiles
+# set-up
 
 ## Preface
 
-My own configuration files and some useful tools. As font for editors and terminals 
-i am using Adobe "Source Code Pro" which is available for free at:
-
-https://github.com/adobe/Source-Code-Pro/downloads
+Provides an installer for setting-up my working environment with useful tools and 
+needed configuration files.
 
 ## Installation
 
