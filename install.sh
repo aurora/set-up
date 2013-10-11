@@ -4,7 +4,28 @@
 # copyright (c) 2013 by Harald Lapp <harald@octris.org>
 #
 
-SRC=$HOME/dotfiles
+SRC=$HOME/set-up
+
+# helper function for package installation
+function install_pkg {
+    local NAME=$1
+    
+    [[ $2 ]] && local TEST=$2 || local TEST=$1
+    
+    local OS=$(uname)
+    
+    if ! command -v $TEST >/dev/null 2>&1; then
+        if [ "$MESG" != "" ]; then
+            echo "installing '$NAME'"
+        fi
+    
+        if [ "$OS" = "Darwin" ]; then
+            sudo rudix install $NAME
+        elif [ "$OS" = "Linux" ]; then
+            sudo apt-get install $NAME
+        fi
+    fi
+}
 
 # install binaries
 if [ ! -d $HOME/bin ]; then
@@ -27,14 +48,11 @@ if [ "$OS" = "Darwin" ]; then
     fi
         
     # install additional tools
-    if ! command -v tmux >/dev/null 2>&1; then
-        sudo rudix install tmux
-    fi
+    install_pkg tmux
 elif [ "$OS" = "Linux" ]; then
     # install additional tools
-    if ! command -v tmux >/dev/null 2>&1; then
-        sudo apt-get install tmux
-    fi
+    install_pkg tmux
+    install_pkg lrzsz rz
 fi
 
 # install erlang related stuff only if erlang is available on the system
