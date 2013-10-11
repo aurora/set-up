@@ -2058,7 +2058,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/harald/dotfiles/etc</string>
+	<string>/Users/harald/set-up/etc</string>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>

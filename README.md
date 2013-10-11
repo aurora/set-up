@@ -9,11 +9,11 @@ needed configuration files.
 
 Clone repository into home-directory:
 
-    git clone --recursive git://github.com/aurora/dotfiles.git
+    git clone --recursive git://github.com/aurora/set-up.git
     
 Execute installer script:
 
-    cd ~/dotfiles
+    cd ~/set-up
     ./install.sh
 
 The following tools and packages will be installed, depending on the operating system used:
