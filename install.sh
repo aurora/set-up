@@ -40,7 +40,7 @@ OS=$(uname)
 if [ "$OS" = "Darwin" ]; then
     # install tools from sub-modules
     ln -snf $SRC/rmate/rmate $HOME/bin/
-    ln -snf $SRC/iterm2-zmodem $HOME/bin/
+    ln -snf $SRC/iterm2-zmodem/iterm2-zmodem $HOME/bin/
     
     # install rudix
     if ! command -v rudix >/dev/null 2>&1; then
