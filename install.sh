@@ -6,6 +6,66 @@
 
 SRC=$HOME/set-up
 
+# set-up needs to be downloaded first
+if [ ! -d $SRC ]; then
+    while true; do
+        read -p "'$SRC' not found, download from github? (y/n) " yn
+
+        case $yn in
+            [Yy]) 
+                break;;
+            [Nn])
+                exit;;
+        esac
+    done
+    
+    TRY=0
+    while true; do
+        TMP="/tmp/set-up-$$-$RANDOM"
+        TRY=$((TRY + 1))
+        
+        if [ ! -d $TMP ]; then
+            mkdir $TMP    
+            break;
+        elif [ $TRY -eq 3 ]; then
+            echo "unable to create temporary directory after '$TRY' tries"
+            exit
+        fi
+    done
+    
+    function download {
+        local URL=$1
+        local DST=$2
+        local SRC
+
+        curl -L -s $URL | tar -C $TMP -xz
+
+        if [ $(ls -1 $TMP/ | wc -l) -ne 1 ]; then
+            echo "unable to determine download directory"
+            exit
+        fi
+        
+        SRC="$TMP/$(ls -1 $TMP)"
+        
+        if [ -d "$DST" ]; then
+            rmdir "$DST"
+            
+            if [ $? -ne 0 ]; then
+                echo "error moving '$SRC' to '$DST'"
+                exit
+            fi
+        fi
+        
+        mv "$SRC" "$DST"
+    }
+    
+    download https://github.com/aurora/set-up/tarball/master $SRC
+    download https://github.com/aurora/rmate/tarball/master $SRC/rmate/
+    download https://github.com/aurora/iterm2-zmodem/tarball/master $SRC/iterm2-zmodem/
+    
+    rmdir $TMP
+fi
+
 # helper function for package installation
 function install_pkg {
     local NAME=$1
