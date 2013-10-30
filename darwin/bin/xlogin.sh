@@ -9,4 +9,4 @@ if [ "$1" = "" ]; then
 	exit
 fi
 
-X -indirect $1 -terminate
+X -query $1 -terminate
