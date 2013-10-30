@@ -5,6 +5,7 @@
 #
 
 SRC=$HOME/set-up
+OS=$(uname | tr '[:upper:]' '[:lower:]')
 
 # set-up needs to be downloaded first
 if [ ! -d $SRC ]; then
@@ -72,16 +73,14 @@ function install_pkg {
     
     [[ $2 ]] && local TEST=$2 || local TEST=$1
     
-    local OS=$(uname)
-    
     if ! command -v $TEST >/dev/null 2>&1; then
         if [ "$MESG" != "" ]; then
             echo "installing '$NAME'"
         fi
     
-        if [ "$OS" = "Darwin" ]; then
+        if [ "$OS" = "darwin" ]; then
             sudo rudix install $NAME
-        elif [ "$OS" = "Linux" ]; then
+        elif [ "$OS" = "linux" ]; then
             sudo apt-get install $NAME
         fi
     fi
@@ -92,12 +91,15 @@ if [ ! -d $HOME/bin ]; then
     mkdir $HOME/bin
 fi
 
-find $SRC/bin/* -type f -exec ln -snf "{}" $HOME/bin/ \;
+find $SRC/bin/all/* -type f -exec ln -snf "{}" $HOME/bin/ \;
 
-# OS specific stuff
-OS=$(uname)
+# OS specific binaries
+if [ -d $SRC/bin/$OS ]; then
+	find $SRC/bin/$OS/* -type f -exec ln -snf "{}" $HOME/bin/ \;
+fi	
 
-if [ "$OS" = "Darwin" ]; then
+# other OS specific stuff
+if [ "$OS" = "darwin" ]; then
     # install tools from sub-modules
     ln -snf $SRC/rmate/rmate $HOME/bin/
     ln -snf $SRC/iterm2-zmodem/iterm2-zmodem $HOME/bin/
@@ -109,7 +111,7 @@ if [ "$OS" = "Darwin" ]; then
         
     # install additional tools
     install_pkg tmux
-elif [ "$OS" = "Linux" ]; then
+elif [ "$OS" = "linux" ]; then
     # install additional tools
     install_pkg tmux
     install_pkg lrzsz rz
