@@ -86,47 +86,26 @@ function install_pkg {
     fi
 }
 
-# install binaries
-if [ ! -d $HOME/bin ]; then
-    mkdir $HOME/bin
-fi
-
-find $SRC/bin/all/* -type f -exec ln -snf "{}" $HOME/bin/ \;
-
-# OS specific binaries
-if [ -d $SRC/bin/$OS ]; then
-	find $SRC/bin/$OS/* -type f -exec ln -snf "{}" $HOME/bin/ \;
-fi	
-
-# other OS specific stuff
-if [ "$OS" = "darwin" ]; then
-    # install tools from sub-modules
-    ln -snf $SRC/rmate/rmate $HOME/bin/
-    ln -snf $SRC/iterm2-zmodem/iterm2-zmodem $HOME/bin/
-    
-    # install rudix
-    if ! command -v rudix >/dev/null 2>&1; then
-        curl -s https://raw.github.com/rudix-mac/package-manager/master/rudix.py | sudo python - install rudix
+# install targets
+for TARGET in all $OS; do
+    if [ -f $SRC/$TARGET/set-up/pre.sh ]; then
+        . $SRC/$TARGET/set-up/pre.sh
     fi
+
+    find $SRC/$TARGET -maxdepth 1 -type f -exec ln -snf {} $HOME/ \;
+    
+    for i in $(find $SRC/$TARGET/* -prune -type d -not -name "set-up"); do
+        NAME=$(basename $i)
         
-    # install additional tools
-    install_pkg tmux
-elif [ "$OS" = "linux" ]; then
-    # install additional tools
-    install_pkg tmux
-    install_pkg lrzsz rz
-fi
+        if [ ! -d $HOME/$NAME ]; then
+            mkdir $HOME/$NAME
+        fi
+        
+        find $i/* -prune -exec ln -snf {} $HOME/$NAME/ \;
+    done
 
-# install erlang related stuff only if erlang is available on the system
-if command -v erlc >/dev/null 2>&1; then
-    erlc -o $SRC/erl/ $SRC/erl/aur.erl 
-    ln -snf $SRC/erlang $HOME/.erlang
-fi
+    if [ -f $SRC/$TARGET/set-up/post.sh ]; then
+        . $SRC/$TARGET/set-up/post.sh
+    fi
+done
 
-# install stuff from etc folder
-# -- tmux releated stuff
-ln -snf $SRC/etc/tmux.conf $HOME/.tmux.conf
-
-# -- vim releated stuff
-ln -snf $SRC/etc/vimrc $HOME/.vimrc
-ln -snf $SRC/etc/vim $HOME/.vim
