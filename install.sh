@@ -92,9 +92,9 @@ for TARGET in all $OS; do
         . $SRC/$TARGET/set-up/pre.sh
     fi
 
-    find $SRC/$TARGET -maxdepth 1 -type f -exec ln -snf {} $HOME/ \;
+    find $SRC/$TARGET ! -name $(basename $TARGET) -prune -type f -exec ln -snf {} $HOME/ \;
     
-    for i in $(find $SRC/$TARGET/* -prune -type d -not -name "set-up"); do
+    for i in $(find $SRC/$TARGET/* -prune -type d ! -name "set-up" ); do
         NAME=$(basename $i)
         
         if [ ! -d $HOME/$NAME ]; then
