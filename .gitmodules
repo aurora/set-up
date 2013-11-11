@@ -1,6 +1,6 @@
 [submodule "iterm2-zmodem"]
 	path = iterm2-zmodem
-	url = https://github.com:aurora/iterm2-zmodem.git
+	url = https://github.com/aurora/iterm2-zmodem.git
 [submodule "rmate"]
 	path = rmate
-	url = https://github.com:aurora/rmate.git
+	url = https://github.com/aurora/rmate.git
