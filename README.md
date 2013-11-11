@@ -11,7 +11,7 @@ needed configuration files.
 
 Clone repository into home-directory:
 
-    git clone --recursive git://github.com/aurora/set-up.git
+    git clone --recursive https://github.com/aurora/set-up.git
     
 Execute installer script:
 
