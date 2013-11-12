@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+source $SRC/libs/config.lib.sh
+
 # initialization
-PHP_DIR=/opt            # path to installed php versions
-PHP_CUR=`which php`     # current installed php version
+PHP_DIR=${PHP_DIR:-/opt}    # path to installed php versions
+PHP_CUR=$(which php)        # current installed php version
 
 if [ -e $PHP_DIR/php -a \! -h $PHP_DIR/php ]; then
     echo "$PHP_DIR/php exists but is no symlink!"
@@ -13,7 +15,7 @@ fi
 declare -a PHP_INST
 idx=0
 
-for i in `find $PHP_DIR/* -name "php-*" -maxdepth 0 \( -type d -and \! -type l \)`; do
+for i in $(find $PHP_DIR -name "php-*" -prune \( -type d -and ! -type l \)`; do
     PHP_INST[$idx]=$i
 
     idx=$((idx + 1))
