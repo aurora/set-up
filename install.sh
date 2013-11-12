@@ -5,7 +5,8 @@
 #
 
 SRC=$HOME/set-up
-OS=$(uname | tr '[:upper:]' '[:lower:]')
+
+source $SRC/libs/config.lib.sh
 
 # set-up needs to be downloaded first
 if [ ! -d $SRC ]; then
